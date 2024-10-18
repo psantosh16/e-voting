@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { contractAbi, contractAddress } from "./Constant/constant";
+// abi : Application Binary Interface (ABI) is a JSON file that describes how to interact with a contract
+// address : The address of the contract on the blockchain
 import Login from "./Components/Login";
 import Finished from "./Components/Finished";
 import Connected from "./Components/Connected";
@@ -63,9 +65,9 @@ function App() {
   }
 
   async function getCandidates() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
+    const provider = new ethers.providers.Web3Provider(window.ethereum); // get provider from metamask
+    await provider.send("eth_requestAccounts", []); // get accounts from metamask
+    const signer = provider.getSigner(); // signer is the account that is connected
     const contractInstance = new ethers.Contract(
       contractAddress,
       contractAbi,
